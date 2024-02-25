@@ -84,7 +84,6 @@ class ChatPage extends StatelessWidget {
                   onTap: () {
                     BlocProvider.of<ChatCubit>(context)
                         .sendMessage(emailP, message!, userName);
-                    controller.clear();
                     message = '';
                   },
                   child: const Icon(

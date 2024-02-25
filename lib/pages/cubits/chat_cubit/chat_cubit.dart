@@ -13,8 +13,8 @@ class ChatCubit extends Cubit<ChatState> {
       FirebaseFirestore.instance.collection(kMessageCollections);
   CollectionReference userData =
       FirebaseFirestore.instance.collection(kUserNameCollections);
-  // final _controller = ScrollController();
-  // TextEditingController controller = TextEditingController();
+  final _controller = ScrollController();
+  TextEditingController controller = TextEditingController();
 
   void _addMessages(String emailP, String message, String userName) {
     try {
@@ -29,8 +29,8 @@ class ChatCubit extends Cubit<ChatState> {
     }
   }
 
-  void sendMessage(String emailP, String userName) {
-    _addMessages(emailP, scrollController.text, userName);
+  void sendMessage(String emailP, String data, String userName) {
+    _addMessages(emailP, data, userName);
     controller.clear();
     _controller.animateTo(
       _controller.position.minScrollExtent,
@@ -46,7 +46,7 @@ class ChatCubit extends Cubit<ChatState> {
       for (var doc in event.docs) {
         messagesList.add(Message.fromJson(doc));
       }
-      emit(ChatSuccess(messages: messagesList,scrollController: ));
+      emit(ChatSuccess(messages: messagesList));
     });
   }
 }
